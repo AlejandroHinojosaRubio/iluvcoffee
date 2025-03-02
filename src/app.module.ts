@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -6,12 +5,13 @@ import { CoffeesModule } from './coffees/coffees.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { CoffeeRatingModule } from './coffee-rating/coffee-rating.module';
 import { ConfigModule } from '@nestjs/config';
+import { CommonModule } from './common/common.module';
 import * as Joi from '@hapi/joi';
 import appConfig from './config/app.config';
 
 @Module({
   imports: [
-    TypeOrmModule.forRootAsync({ 
+    TypeOrmModule.forRootAsync({
       useFactory: () => ({
         type: 'postgres',
         host: process.env.DATABASE_HOST,
@@ -26,12 +26,13 @@ import appConfig from './config/app.config';
     ConfigModule.forRoot({
       validationSchema: Joi.object({
         DATABASE_HOST: Joi.required(),
-        DATABASE_PORT: Joi.number().default(5432)
+        DATABASE_PORT: Joi.number().default(5432),
       }),
       load: [appConfig],
     }),
-    CoffeesModule, 
-    CoffeeRatingModule
+    CoffeesModule,
+    CoffeeRatingModule,
+    CommonModule,
   ],
   controllers: [AppController],
   providers: [AppService],
