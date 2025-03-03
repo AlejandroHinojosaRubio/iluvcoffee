@@ -24,6 +24,12 @@
 
 ## Description
 
+This repository is part of the official NestJS course - NestJS Fundamentals.
+It is divided into 3 branches:
+- master: Base implementation
+- next-sql-section: SQL database implementation (PostgreSQL & TypeORM)
+- next-mongodb-sections: Document database implementation (MongoDB & Mongoose)
+  
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
 ## Installation
