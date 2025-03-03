@@ -1,31 +1,32 @@
-/* eslint-disable prettier/prettier */
-import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
-import { Flavor } from "./flavor.entity";
+import {
+  Column,
+  Entity,
+  JoinTable,
+  ManyToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { Flavor } from './flavor.entity';
 
 @Entity()
-export class  Coffee {
-    @PrimaryGeneratedColumn()
-    id: number;
+export class Coffee {
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @Column()
-    name: string;
+  @Column()
+  name: string;
 
-    @Column({ nullable: true })
-    description: string;
+  @Column({ nullable: true })
+  description: string;
 
-    @Column()
-    brand: string;
+  @Column()
+  brand: string;
 
-    @Column({ default: 0 })
-    recommendations: number;
+  @Column({ default: 0 })
+  recommendations: number;
 
-    @JoinTable()
-    @ManyToMany(
-        type => Flavor, 
-        (flavor) => flavor.coffees,
-        {
-            cascade: true,
-        }
-    )
-    flavors: Flavor[];
+  @JoinTable()
+  @ManyToMany((type) => Flavor, (flavor) => flavor.coffees, {
+    cascade: true,
+  })
+  flavors: Flavor[];
 }
